@@ -15,6 +15,7 @@ Get Started
 First, include `jscli.js`, no ploblems there.
 
 Then you create a new jscli object. Something like this:
+
     new jscli({
 		// Width and height when not in fullscreen
     	width : '500',
@@ -42,6 +43,7 @@ Public functions
 ----------------
 
 The following child-functions of the jscli-object may be used:
+
 	bgColor() - changes the background, takes hexvalue: 'FF00FF' or '#FF00FF'
 	canvasCreate() - transforms the terminal to a HTML5 canvas for graphics
 	canvasDestroy() - reverse back to terminal
