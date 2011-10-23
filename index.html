@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>jscli</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script type="text/javascript" src="jscli.js"></script>
+<script type="text/javascript" src="jscli_demo.js"></script>
+
+<style type="text/css">
+	*:focus {outline: none;}
+	li {margin-top: 10px;}
+</style>
+
+<script type="text/javascript">
+	function load(){
+		/*
+			The command interpreter object.
+			
+			The check method is called everytime the user press return.
+			Parameter 1 is the trimmed value of the input field at the time.
+			Parameter 2 is a jscli-object used to alter the terminal.
+			
+			The help method extends the built-in ?/help command with
+			info about your commands.
+		*/
+		cmd = {
+			check : function(s, cli){
+				cli.write(cli.prompt + s);
+				
+				switch(s)
+				{
+					case 'clear':
+						cli.clearOutput();
+						break;
+					
+					case 'canvas':
+						this._canvas(cli);
+						break;
+					
+					case 'max':
+						cli.fontSize(13);
+						cli.windowMaximize();
+						break;
+					
+					case 'min':						
+						cli.fontSize(10);
+						cli.windowNormal();
+						break;
+					
+					case 'hide':
+						cli.windowHide();
+						break;
+					
+					case '':
+						break;
+					
+					default:
+						cli.write('"'+ s +'" - Unrecognized command.')
+				}
+				
+				cli.clearInput();
+			},
+			help : function(cli){
+				cli.write('canvas - test the canvas capabilities of jscli');
+				cli.write('clear - clear the screen of output');
+				cli.write('max - fullscreen');
+				cli.write('min - normal');
+				cli.write('hide - hides the cli (only when in normal)');
+			},
+			
+			_canvas : function(cli){
+				c = cli.canvasCreate();
+				c.ctx.fillStyle = "rgb(255,255,255)";  
+				c.ctx.strokeStyle = "rgb(255,255,255)";  
+				c.ctx.beginPath();
+				c.ctx.arc(75,75,50,0,Math.PI*2,true); // Outer circle
+				c.ctx.moveTo(110,75);
+				c.ctx.arc(75,75,35,0,Math.PI,false);   // Mouth
+				c.ctx.moveTo(65,65);
+				c.ctx.arc(60,65,5,0,Math.PI*2,true);  // Left eye
+				c.ctx.moveTo(95,65);
+				c.ctx.arc(90,65,5,0,Math.PI*2,true);  // Right eye
+				c.ctx.stroke();
+				t = function(){	cli.canvasDestroy();}
+				setTimeout(t, 3000);
+			}
+		};
+		
+		// Creation of jscli
+		new jscli({
+			width:500,
+			height:300,
+			div:'jscli',
+			fontsize:13,
+			interpreter:cmd,
+			fullscreen:true
+		});
+	}
+</script>
+
+</head>
+
+<body onload="load()">
+	<br />
+	
+	<div id="jscli"><!-- jscli is created here --></div>
+	
+	<h3>This text is hidden when in fullscreen</h3>
+</body>
+</html>
