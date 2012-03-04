@@ -1,10 +1,11 @@
 /*
-	jscli (JavaScript Command-line Interface) v0.3 (Experimental!)
+	jscli (JavaScript Command-line Interface) v0.3.2 (Experimental!)
 	By Tomas Thelander
+	
+	https://github.com/dekadans/jscli
 */
 
 /* Constructor */
-
 function jscli(args)
 {
 	if (args != null)
@@ -66,6 +67,8 @@ jscli.prototype = {
 	
 	fullscreen : false,
 	
+    fontString : 'Consolas, "Lucida Console", Monaco, "Courier New", Monospace',
+    
 	interpreter : '',
 	
 	hidden : false,
@@ -75,9 +78,9 @@ jscli.prototype = {
 	
 	prompt : '>',
 	
-	version : '0.3',
+	version : '0.3.2',
 	
-	welcome : 'jscli v0.3',
+	welcome : 'jscli v0.3.2',
 	
 	wh : 300,
 	ww : 500,
@@ -159,12 +162,12 @@ jscli.prototype = {
 		
 		div = document.getElementById(this.div);
 		div.style.backgroundColor = '#' + this.bc;
-		div.style.fontFamily = 'Consolas, Lucida Console';
+		div.style.fontFamily = this.fontString;
 		div.style.overflow = 'auto';
 		div.style.border = '0px';
 		div.style.cursor = '';
 		div.innerHTML = '<div id="'+this.textarea+'"></div>';
-		div.innerHTML += '<div id="'+this.inputwrap+'">'+ this.escapeHTML(this.prompt) +'<input id="'+this.input+'" type="text" style="color: #' + this.fc +'; background-color: #' + this.bc +'; border: 0px; font-size: '+ this.fs +'pt;width:90%; font-family: Consolas,Lucida Console,Verdana;" /></div>';
+		div.innerHTML += '<div id="'+this.inputwrap+'">'+ this.escapeHTML(this.prompt) +'<input id="'+this.input+'" type="text" style="color: #' + this.fc +'; background-color: #' + this.bc +'; border: 0px; font-size: '+ this.fs +'pt;width:90%; font-family: '+ this.fontString +';" /></div>';
 		
 		document.getElementById(this.textarea).style.margin = '5px';
 		document.getElementById(this.textarea).style.marginBottom = '0px';
