@@ -64,6 +64,6 @@ The following child-functions of the jscli-object may be used:
 Example
 -------
 
-See index.html
+See http://dev.tthe.se/jscli/
 
 

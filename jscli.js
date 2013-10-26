@@ -67,7 +67,7 @@ jscli.prototype = {
 	
 	fullscreen : false,
 	
-    fontString : 'Consolas, "Lucida Console", Monaco, "Courier New", Monospace',
+    fontString : 'Consolas, \'Lucida Console\', Monaco, \'Courier New\', Monospace',
     
 	interpreter : '',
 	
